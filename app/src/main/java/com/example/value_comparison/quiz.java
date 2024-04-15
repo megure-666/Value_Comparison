@@ -96,6 +96,4 @@ public class quiz extends AppCompatActivity {
         startActivity(intent);
     }
      */
-
-    // test comment
 }
