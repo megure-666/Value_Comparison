@@ -21,4 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButton_setting(View view) {
     }
+
+    // test comment
 }

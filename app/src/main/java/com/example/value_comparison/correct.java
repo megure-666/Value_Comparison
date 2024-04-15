@@ -18,4 +18,6 @@ public class correct extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    // test comment
 }
