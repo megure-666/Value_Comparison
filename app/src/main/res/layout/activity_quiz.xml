@@ -18,9 +18,9 @@
 
     <Button
         android:id="@+id/option1"
-        android:layout_width="150sp"
+        android:layout_width="160sp"
         android:layout_height="wrap_content"
-        android:onClick="onButton_op1"
+        android:onClick="onClick"
         app:layout_constraintTop_toBottomOf="@id/quiz_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,9 +28,9 @@
 
     <Button
         android:id="@+id/option2"
-        android:layout_width="150sp"
+        android:layout_width="160sp"
         android:layout_height="wrap_content"
-        android:onClick="onButton_op2"
+        android:onClick="onClick"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/quiz_title"
         app:layout_constraintStart_toEndOf="@id/option1"
@@ -39,9 +39,9 @@
 
     <Button
         android:id="@+id/option3"
-        android:layout_width="150sp"
+        android:layout_width="160sp"
         android:layout_height="wrap_content"
-        android:onClick="onButton_op3"
+        android:onClick="onClick"
         app:layout_constraintTop_toBottomOf="@id/quiz_title"
         app:layout_constraintStart_toEndOf="@id/option2"
         app:layout_constraintBottom_toBottomOf="parent"

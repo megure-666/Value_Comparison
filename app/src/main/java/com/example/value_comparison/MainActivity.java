@@ -14,11 +14,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    // スタートボタン
     public void onButton_start(View view) {
         Intent intent = new Intent(this, quiz.class);
         startActivity(intent);
     }
 
+    // 設定ボタン
     public void onButton_setting(View view) {
     }
 }
