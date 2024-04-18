@@ -55,8 +55,7 @@ public class quiz extends AppCompatActivity {
                 // エラーになっていたらiをデクリメントしてやり直し
                 i--;
             }
-            /*上の処理をしてるとたまに表示がバグる？*/
-            /*→値が100の時に改行されている*/
+
         }
     }
 

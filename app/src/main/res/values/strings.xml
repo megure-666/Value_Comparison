@@ -6,6 +6,6 @@
     <string name="quiz_title">3つの中で一番大きい数字を選んでください。</string>
     <string name="next">次へ</string>
     <string name="to_start">スタートへ</string>
-    <string name="correct">正解！</string>
+    <string name="correct">正解</string>
     <string name="incorrect">不正解</string>
 </resources>
