@@ -19,8 +19,4 @@ public class correct extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-    public void onButton_quiz(View view) {
-        Intent intent = new Intent(this, quiz.class);
-        startActivity(intent);
-    }
 }
