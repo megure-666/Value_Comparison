@@ -66,15 +66,15 @@ public class quiz extends AppCompatActivity {
 
         generateNumber();
 
-        TextView op1 = (TextView) findViewById(R.id.option1);
-        op1.setText(strNumber[0]);
-        op1.setTextSize(60);
-        TextView op2 = (TextView) findViewById(R.id.option2);
-        op2.setText(strNumber[1]);
-        op2.setTextSize(60);
-        TextView op3 = (TextView) findViewById(R.id.option3);
-        op3.setText(strNumber[2]);
-        op3.setTextSize(60);
+        TextView option1 = (TextView) findViewById(R.id.option1);
+        option1.setText(strNumber[0]);
+        option1.setTextSize(60);
+        TextView option2 = (TextView) findViewById(R.id.option2);
+        option2.setText(strNumber[1]);
+        option2.setTextSize(60);
+        TextView option3 = (TextView) findViewById(R.id.option3);
+        option3.setText(strNumber[2]);
+        option3.setTextSize(60);
 
         answer1 = findViewById(R.id.option1);
         answer2 = findViewById(R.id.option2);
@@ -91,9 +91,11 @@ public class quiz extends AppCompatActivity {
         String result;
         if (btntxt.equals(maxNumberStr)){
             Intent intent = new Intent(this, correct.class);
+            intent.putExtra("QUIZ_NUMBER", quizNumber);
             startActivity(intent);
         }else{
             Intent intent = new Intent(this, incorrect.class);
+            intent.putExtra("QUIZ_NUMBER", quizNumber);
             startActivity(intent);
         }
 
