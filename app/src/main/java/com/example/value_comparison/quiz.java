@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 
@@ -32,7 +34,7 @@ public class quiz extends AppCompatActivity {
         Random random = new Random();
         for (int i = 0; i < 3; i++) {
             // 乱数の生成
-            // 101未満の数を生成
+            // 101未満の自然数を生成
             quizNumber[i] = random.nextInt(101);
             // 同じ数が出ないようにする再抽選
             for (int j = 0; j < i; j++){
@@ -87,34 +89,16 @@ public class quiz extends AppCompatActivity {
     public void onClick(View view){
         Button answer = findViewById(view.getId());
         String btntxt = answer.getText().toString();
+        Intent i;
+        //List<int> numlist = Arrays.asList(quizNumber);
 
-        String result;
         if (btntxt.equals(maxNumberStr)){
-            Intent intent = new Intent(this, correct.class);
-            intent.putExtra("QUIZ_NUMBER", quizNumber);
-            startActivity(intent);
+            i = new Intent(this, correct.class);
         }else{
-            Intent intent = new Intent(this, incorrect.class);
-            intent.putExtra("QUIZ_NUMBER", quizNumber);
-            startActivity(intent);
+            i = new Intent(this, incorrect.class);
         }
+        i.putExtra("QUIZ_NUMBER", quizNumber);
+        startActivity(i);
 
     }
-    /*ボタン押して画面遷移できた*/
-    /*
-    public void onButton_op1(View view) {
-        Intent intent = new Intent(this, correct.class);
-        startActivity(intent);
-    }
-
-    public void onButton_op2(View view) {
-        Intent intent = new Intent(this, incorrect.class);
-        startActivity(intent);
-    }
-
-    public void onButton_op3(View view) {
-        Intent intent = new Intent(this, incorrect.class);
-        startActivity(intent);
-    }
-    */
 }
