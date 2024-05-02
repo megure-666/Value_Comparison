@@ -90,7 +90,6 @@ public class quiz extends AppCompatActivity {
         Button answer = findViewById(view.getId());
         String btntxt = answer.getText().toString();
         Intent i;
-        //List<int> numlist = Arrays.asList(quizNumber);
 
         if (btntxt.equals(maxNumberStr)){
             i = new Intent(this, correct.class);

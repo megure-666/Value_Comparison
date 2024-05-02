@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 public class correct extends AppCompatActivity {
 
     @Override
@@ -16,22 +18,21 @@ public class correct extends AppCompatActivity {
 
         Intent intent = getIntent();
         int number[] = intent.getIntArrayExtra("QUIZ_NUMBER");
-        //int number = intent.getIntExtra("QUIZ_NUMBER",-100);
 
-        String strNum[] = new String[3];
-        for(int i = 0;i < 3;i++){
-            strNum[i] = Integer.valueOf(number[i]).toString();
-        }
+        // 数を昇順にソート
+        Arrays.sort(number);
 
+        // 可変長のString配列を作って文を表示させる
+        // quiz.javaから取得した値を文字列として結合し1文の解説にする？
         TextView ans1 = (TextView) findViewById(R.id.op1);
-        ans1.setText(String.valueOf(number[0]));
-        ans1.setTextSize(60);
+        ans1.setText(String.valueOf(number[2]));
+        ans1.setTextSize(80);
         TextView ans2 = (TextView) findViewById(R.id.op2);
         ans2.setText(String.valueOf(number[1]));
-        ans2.setTextSize(60);
+        ans2.setTextSize(80);
         TextView ans3 = (TextView) findViewById(R.id.op3);
-        ans3.setText(String.valueOf(number[2]));
-        ans3.setTextSize(60);
+        ans3.setText(String.valueOf(number[0]));
+        ans3.setTextSize(80);
 
     }
 
