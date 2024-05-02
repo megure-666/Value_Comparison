@@ -61,7 +61,7 @@
         android:id="@+id/next_quiz"
         android:layout_width="500sp"
         android:layout_height="wrap_content"
-        android:text="@string/to_quiz"
+        android:text="@string/next"
         android:textSize="80sp"
         android:onClick="onButton_quiz"
         app:layout_constraintTop_toBottomOf="@id/op_explain"
