@@ -96,7 +96,7 @@ public class quiz extends AppCompatActivity {
         }else{
             i = new Intent(this, incorrect.class);
         }
-        i.putExtra("QUIZ_NUMBER", quizNumber);
+        i.putExtra("QUIZ_NUMBER", quizNumber); // 出題用の配列
         startActivity(i);
 
     }

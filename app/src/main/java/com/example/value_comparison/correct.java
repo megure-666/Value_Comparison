@@ -19,6 +19,9 @@ public class correct extends AppCompatActivity {
         Intent intent = getIntent();
         int number[] = intent.getIntArrayExtra("QUIZ_NUMBER");
 
+        int count = 0; // 正解数カウント用変数
+        count++;
+
         // 数を昇順にソート
         Arrays.sort(number);
 
