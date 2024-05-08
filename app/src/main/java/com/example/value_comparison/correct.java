@@ -39,8 +39,8 @@ public class correct extends AppCompatActivity {
 
     }
 
-    public void onButton_main(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void onButton_result(View view) {
+        Intent intent = new Intent(this, result.class);
         startActivity(intent);
     }
 

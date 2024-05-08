@@ -48,10 +48,10 @@
         android:id="@+id/op_explain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="の順に大きい"
+        android:text="@string/explain"
         android:textSize="60sp"
         app:layout_constraintTop_toBottomOf="@id/op3"
-        app:layout_constraintBottom_toTopOf="@id/next_top"
+        app:layout_constraintBottom_toTopOf="@id/next_result"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"/>
@@ -66,15 +66,15 @@
         app:layout_constraintTop_toBottomOf="@id/op_explain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/next_top" />
+        app:layout_constraintEnd_toStartOf="@id/next_result" />
 
     <Button
-        android:id="@+id/next_top"
+        android:id="@+id/next_result"
         android:layout_width="500sp"
         android:layout_height="wrap_content"
-        android:text="@string/to_start"
+        android:text="@string/to_result"
         android:textSize="80sp"
-        android:onClick="onButton_main"
+        android:onClick="onButton_result"
         app:layout_constraintTop_toBottomOf="@id/op_explain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/next_quiz"
