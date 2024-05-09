@@ -20,6 +20,7 @@ public class quiz extends AppCompatActivity {
     int quizNumber[] = new int[3];      // 乱数生成用の配列
     String strNumber[] = new String[3]; // 文字列に変換した数字用の配列
     int maxNumber = 0;                  // 最大値の配列の番号を保持する変数
+    int quizCount = 0;                  // 問題数のカウント
     String maxNumberStr = "0";
     private Button answer1, answer2, answer3;
 
@@ -85,6 +86,8 @@ public class quiz extends AppCompatActivity {
         //answer1.setOnClickListener(this);
         //answer2.setOnClickListener(this);
         //answer3.setOnClickListener(this);
+
+        quizCount++;
     }
     public void onClick(View view){
         Button answer = findViewById(view.getId());
@@ -97,6 +100,7 @@ public class quiz extends AppCompatActivity {
             i = new Intent(this, incorrect.class);
         }
         i.putExtra("QUIZ_NUMBER", quizNumber); // 出題用の配列
+        i.putExtra("QUIZ", quizCount);
         startActivity(i);
 
     }

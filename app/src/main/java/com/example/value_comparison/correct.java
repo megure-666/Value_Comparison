@@ -11,6 +11,9 @@ import java.util.Arrays;
 
 public class correct extends AppCompatActivity {
 
+    int quizCount;        // 問題数のカウント
+    int correctCount = 0; // 正解数のカウント
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,9 +21,9 @@ public class correct extends AppCompatActivity {
 
         Intent intent = getIntent();
         int number[] = intent.getIntArrayExtra("QUIZ_NUMBER");
+        quizCount = intent.getIntExtra("QUIZ", 0);
 
-        int count = 0; // 正解数カウント用変数
-        count++;
+        correctCount++;
 
         // 数を昇順にソート
         Arrays.sort(number);
@@ -41,6 +44,8 @@ public class correct extends AppCompatActivity {
 
     public void onButton_result(View view) {
         Intent intent = new Intent(this, result.class);
+        intent.putExtra("CORRECT",correctCount);
+        intent.putExtra("QUIZ", quizCount);
         startActivity(intent);
     }
 

@@ -12,6 +12,11 @@ public class result extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        Intent intent = getIntent();
+        int quizCount = intent.getIntExtra("QUIZ", 0);
+        int correctCount = intent.getIntExtra("CORRECT", 0);
+        int incorrectCount = intent.getIntExtra("INCORRECT", 0);
     }
 
     public void onButton_main(View view) {
