@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class correct extends AppCompatActivity {
 
     int quizCount;        // 問題数のカウント
-    int correctCount = 0; // 正解数のカウント
+    static int correctCount = 0; // 正解数のカウント
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

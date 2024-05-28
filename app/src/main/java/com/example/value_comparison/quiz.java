@@ -20,7 +20,7 @@ public class quiz extends AppCompatActivity {
     int quizNumber[] = new int[3];      // 乱数生成用の配列
     String strNumber[] = new String[3]; // 文字列に変換した数字用の配列
     int maxNumber = 0;                  // 最大値の配列の番号を保持する変数
-    int quizCount = 0;                  // 問題数のカウント
+    static int quizCount = 0;                  // 問題数のカウント
     String maxNumberStr = "0";
     private Button answer1, answer2, answer3;
 
@@ -67,6 +67,9 @@ public class quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        Intent intent = getIntent();
+        Boolean check = intent.getBooleanExtra("CLEAR", false);
+
         generateNumber();
 
         TextView option1 = (TextView) findViewById(R.id.option1);
@@ -87,6 +90,7 @@ public class quiz extends AppCompatActivity {
         //answer2.setOnClickListener(this);
         //answer3.setOnClickListener(this);
 
+        if(check == true) quizCount = 0;
         quizCount++;
     }
     public void onClick(View view){

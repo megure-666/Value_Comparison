@@ -8,15 +8,21 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    boolean check = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        check = intent.getBooleanExtra("CLEAR", false);
     }
 
     // スタートボタン
     public void onButton_start(View view) {
         Intent intent = new Intent(this, quiz.class);
+        if(check == true) intent.putExtra("CLEAR", true);
         startActivity(intent);
     }
 

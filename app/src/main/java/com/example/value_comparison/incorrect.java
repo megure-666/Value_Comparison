@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class incorrect extends AppCompatActivity {
 
     int quizCount;          // 問題数のカウント
-    int incorrectCount = 0; // 不正解数のカウント
+    static int incorrectCount = 0; // 不正解数のカウント
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
