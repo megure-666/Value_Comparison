@@ -96,13 +96,16 @@ public class quiz extends AppCompatActivity {
     public void onClick(View view){
         Button answer = findViewById(view.getId());
         String btntxt = answer.getText().toString();
+        boolean judge = false;
         Intent i;
 
         if (btntxt.equals(maxNumberStr)){
-            i = new Intent(this, correct.class);
+            judge = true;
         }else{
-            i = new Intent(this, incorrect.class);
+            judge = false;
         }
+        i = new Intent(this, judge.class);
+        i.putExtra("RESULT", judge);
         i.putExtra("QUIZ_NUMBER", quizNumber); // 出題用の配列
         i.putExtra("QUIZ", quizCount);
         startActivity(i);

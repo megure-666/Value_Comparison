@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 public class result extends AppCompatActivity {
 
+    boolean clear = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,6 @@ public class result extends AppCompatActivity {
     }
 
     public void onButton_main(View view) {
-        boolean clear = true;
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("CLEAR", clear);
         startActivity(intent);
@@ -51,6 +52,7 @@ public class result extends AppCompatActivity {
 
     public void onButton_restart(View view) {
         Intent intent = new Intent(this, quiz.class);
+        intent.putExtra("CLEAR", clear);
         startActivity(intent);
     }
 }
