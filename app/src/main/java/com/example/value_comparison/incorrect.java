@@ -1,3 +1,4 @@
+// not use now
 package com.example.value_comparison;
 
 import androidx.appcompat.app.AppCompatActivity;

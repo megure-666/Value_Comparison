@@ -19,29 +19,19 @@ public class result extends AppCompatActivity {
         Intent intent = getIntent();
         int quizCount = intent.getIntExtra("QUIZ", 0);
         int correctCount = intent.getIntExtra("CORRECT", 0);
-        int incorrectCount = intent.getIntExtra("INCORRECT", 0);
+        //int incorrectCount = intent.getIntExtra("INCORRECT", 0);
 
+        // 正解数の表示
         TextView details = findViewById(R.id.details);
         details.setTextSize(80);
-        if(correctCount > 0) {
-            details.setText(String.valueOf(correctCount) + " / " + String.valueOf(quizCount));
-        }else{
-            details.setText(String.valueOf(quizCount - incorrectCount) + " / " + String.valueOf(quizCount));
-        }
+        details.setText(String.valueOf(correctCount) + " / " + String.valueOf(quizCount));
 
-        double val = 0;
-        String val_str;
+        // 正答率の表示
         TextView percentage = findViewById(R.id.percentage);
         percentage.setTextSize(80);
-        if(correctCount > 0) {
-            val = (correctCount / quizCount) * 100;
-            val_str = String.format("%.2f",val);
-            percentage.setText(val_str + " %");
-        }else{
-            val = ((quizCount - incorrectCount) / quizCount) * 100;
-            val_str = String.format("%.2f",val);
-            percentage.setText(val_str + " %");
-        }
+        double val = ((double)correctCount / quizCount) * 100;
+        String val_str = String.format("%.2f",val);
+        percentage.setText(val_str + " %");
     }
 
     public void onButton_main(View view) {

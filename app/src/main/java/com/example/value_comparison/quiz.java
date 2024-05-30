@@ -20,8 +20,9 @@ public class quiz extends AppCompatActivity {
     int quizNumber[] = new int[3];      // 乱数生成用の配列
     String strNumber[] = new String[3]; // 文字列に変換した数字用の配列
     int maxNumber = 0;                  // 最大値の配列の番号を保持する変数
-    static int quizCount = 0;                  // 問題数のカウント
+    //static int quizCount = 0;                  // 問題数のカウント
     String maxNumberStr = "0";
+    boolean check = false;
     private Button answer1, answer2, answer3;
 
     public void generateNumber () {
@@ -68,7 +69,7 @@ public class quiz extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         Intent intent = getIntent();
-        Boolean check = intent.getBooleanExtra("CLEAR", false);
+        check = intent.getBooleanExtra("CLEAR", false);
 
         generateNumber();
 
@@ -90,8 +91,8 @@ public class quiz extends AppCompatActivity {
         //answer2.setOnClickListener(this);
         //answer3.setOnClickListener(this);
 
-        if(check == true) quizCount = 0;
-        quizCount++;
+        //if(check) quizCount = 0;
+        //quizCount++;
     }
     public void onClick(View view){
         Button answer = findViewById(view.getId());
@@ -99,7 +100,7 @@ public class quiz extends AppCompatActivity {
         boolean judge = false;
         Intent i;
 
-        if (btntxt.equals(maxNumberStr)){
+        if(btntxt.equals(maxNumberStr)){
             judge = true;
         }else{
             judge = false;
@@ -107,7 +108,8 @@ public class quiz extends AppCompatActivity {
         i = new Intent(this, judge.class);
         i.putExtra("RESULT", judge);
         i.putExtra("QUIZ_NUMBER", quizNumber); // 出題用の配列
-        i.putExtra("QUIZ", quizCount);
+        //i.putExtra("QUIZ", quizCount);
+        if(check == true) i.putExtra("CLEAR", true);
         startActivity(i);
 
     }
