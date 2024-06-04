@@ -28,5 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     // 設定ボタン
     public void onButton_setting(View view) {
+        Intent intent = new Intent(this, SettingsFragment.class);
+        //if(check == true) intent.putExtra("CLEAR", true);
+        startActivity(intent);
     }
 }
