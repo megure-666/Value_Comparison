@@ -2,6 +2,7 @@ package com.example.value_comparison;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,7 +11,19 @@ import androidx.fragment.app.DialogFragment;
 
 public class AllDeleteDialog extends DialogFragment {
 
-    private VCDatabaseHelper helper = null;
+    public interface NoticeDialogListener {
+        public void onDialogPositiveClick(DialogFragment dialog);
+    }
+
+    NoticeDialogListener listener;
+
+    // フラグメントができたときにlistenerをインスタンス化
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        listener = (NoticeDialogListener) context;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstance){
@@ -24,14 +37,10 @@ public class AllDeleteDialog extends DialogFragment {
         // ダイアログのメッセージ文
         builder.setTitle(R.string.dialog_message);
 
-        // Positiveボタンの内容表示と押したときの処理
-        builder.setPositiveButton(R.string.daialog_positive, new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // ボタンを押した時の処理
+        DialogClickListener listener = new DialogClickListener();
 
-            }
-        });
+        // Positiveボタンの内容表示と押したときの処理
+        builder.setPositiveButton(R.string.dialog_positive, listener);
 
         // Nagativeボタンの内容表示と押したときの処理(無いのでnull)
         builder.setNegativeButton(R.string.dialog_negative, null);
@@ -44,5 +53,22 @@ public class AllDeleteDialog extends DialogFragment {
 
         // ダイアログをリターン
         return dialog;
+    }
+
+    private class DialogClickListener implements DialogInterface.OnClickListener {
+
+        @Override
+        public void onClick(DialogInterface dialog, int buttonId){
+
+            // switchでタップされたボタンでの条件分岐を行う
+            switch (buttonId){
+                // positiveボタン
+                case DialogInterface.BUTTON_POSITIVE:
+                    // positiveボタンが押されたときのメソッドを呼び出し
+                    // 処理は継承先のShowDataBaseで実行
+                    listener.onDialogPositiveClick(AllDeleteDialog.this);
+                    break;
+            }
+        }
     }
 }

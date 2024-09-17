@@ -8,8 +8,9 @@ import android.view.View;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
-public class ShowDatabase extends AppCompatActivity {
+public class ShowDatabase extends AppCompatActivity implements AllDeleteDialog.NoticeDialogListener{
 
     private VCDatabaseHelper helper = null;
     DBListAdapter sc_adapter;
@@ -81,6 +82,15 @@ public class ShowDatabase extends AppCompatActivity {
 
         AllDeleteDialog dialog = new AllDeleteDialog();
         dialog.show(getSupportFragmentManager(), "all_del");
+
+    }
+
+    // ダイアログでボタンが押されたときに動作するコールバック関数
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        try(SQLiteDatabase db = helper.getWritableDatabase()){
+            db.delete(DBContract.DBEntry.TABLE_NAME, null, null);
+        }
 
         // データ一覧を表示
         onShow();

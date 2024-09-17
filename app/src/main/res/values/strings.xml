@@ -8,7 +8,7 @@
     <string name="to_start">スタートへ</string>
     <string name="correct">正解</string>
     <string name="incorrect">不正解</string>
-    <string name="restart">やり直す</string>
+    <string name="quiz_continue">続ける</string>
     <string name="to_result">結果画面へ</string>
     <string name="explain">の順に大きい</string>
     <string name="result">結果</string>
@@ -18,7 +18,7 @@
     <!-- AllDeleteDialog Message -->
     <string name="dialog_title">保存データの全削除</string>
     <string name="dialog_message">本当に今までの履歴を削除しますか？</string>
-    <string name="daialog_positive">はい</string>
+    <string name="dialog_positive">はい</string>
     <string name="dialog_negative">いいえ</string>
     <string name="dialog_neutral">キャンセル</string>
     <!-- Preference Titles -->

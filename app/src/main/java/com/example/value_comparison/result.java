@@ -15,7 +15,7 @@ public class result extends AppCompatActivity {
     private VCDatabaseHelper helper = null;
     private int id = 0;
 
-    boolean clear = true;
+    boolean clear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +75,14 @@ public class result extends AppCompatActivity {
 
     public void onButton_main(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        clear = true;
         intent.putExtra("CLEAR", clear);
         startActivity(intent);
     }
 
-    public void onButton_restart(View view) {
+    public void onButton_continue(View view) {
         Intent intent = new Intent(this, quiz.class);
+        clear = false;
         intent.putExtra("CLEAR", clear);
         startActivity(intent);
     }
