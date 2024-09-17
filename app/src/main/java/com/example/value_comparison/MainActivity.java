@@ -27,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 設定ボタン
+    // 一時的にデータベースのデータを表示するようになってる
     public void onButton_setting(View view) {
-        Intent intent = new Intent(this, SettingsFragment.class);
+        Intent intent = new Intent(this, ShowDatabase.class);
         //if(check == true) intent.putExtra("CLEAR", true);
         startActivity(intent);
     }
