@@ -69,7 +69,7 @@ public class quiz extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         Intent intent = getIntent();
-        check = intent.getBooleanExtra("CLEAR", false);
+        check = intent.getBooleanExtra("CLEAR", true);
 
         generateNumber();
 
@@ -109,7 +109,7 @@ public class quiz extends AppCompatActivity {
         i.putExtra("RESULT", judge);
         i.putExtra("QUIZ_NUMBER", quizNumber); // 出題用の配列
         //i.putExtra("QUIZ", quizCount);
-        if(check == true) i.putExtra("CLEAR", true);
+        if(check == false) i.putExtra("CLEAR", false);
         startActivity(i);
 
     }

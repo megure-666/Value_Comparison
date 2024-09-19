@@ -25,7 +25,7 @@ public class judge extends AppCompatActivity {
         Intent intent = getIntent();
         boolean judge = intent.getBooleanExtra("RESULT", false);
         int number[] = intent.getIntArrayExtra("QUIZ_NUMBER");
-        boolean check = intent.getBooleanExtra("CLEAR", false);
+        boolean check = intent.getBooleanExtra("CLEAR", true);
         //quizCount = intent.getIntExtra("QUIZ", 0);
 
         //if(check) quizCount = correctCount = incorrectcount = 0; // リセット処理
@@ -74,6 +74,7 @@ public class judge extends AppCompatActivity {
 
     public void onButton_quiz(View view) {
         Intent intent = new Intent(this, quiz.class);
+        intent.putExtra("CLEAR", false);
         startActivity(intent);
     }
 }

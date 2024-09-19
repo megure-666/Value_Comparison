@@ -15,7 +15,10 @@ public class result extends AppCompatActivity {
     private VCDatabaseHelper helper = null;
     private int id = 0;
 
-    boolean clear;
+    private boolean clear;
+
+    private String details_str;
+    private String val_str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +36,15 @@ public class result extends AppCompatActivity {
         // 正解数の表示
         TextView details = findViewById(R.id.details);
         details.setTextSize(80);
-        String details_str = String.valueOf(correctCount) + " / " + String.valueOf(quizCount);
+        details_str = String.valueOf(correctCount) + " / " + String.valueOf(quizCount);
         details.setText(details_str);
 
         // 正答率の表示
         TextView percentage = findViewById(R.id.percentage);
         percentage.setTextSize(80);
         double val = ((double)correctCount / quizCount) * 100;
-        String val_str = String.format("%.2f",val);
+        val_str = String.format("%.2f",val);
         percentage.setText(val_str + " %");
-
-        // データを保存
-        onSave(details_str, val_str);
 
     }
 
@@ -67,13 +67,14 @@ public class result extends AppCompatActivity {
                 db.update(DBContract.DBEntry.TABLE_NAME, cv,
                         DBContract.DBEntry._ID + " = ?", new String[] {String.valueOf(id)});
             }
-
         }
-
-
     }
 
     public void onButton_main(View view) {
+
+        // データを保存
+        onSave(details_str, val_str);
+
         Intent intent = new Intent(this, MainActivity.class);
         clear = true;
         intent.putExtra("CLEAR", clear);
