@@ -8,20 +8,20 @@ import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 
-public class AllDeleteDialog extends DialogFragment {
+public class CSVExportDialog extends DialogFragment {
 
-    public interface NoticeDialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog);
+    public interface DialogListener {
+        public boolean onDialogPositiveClickExport(DialogFragment dialog);
     }
 
-    NoticeDialogListener listener;
+    DialogListener listener;
 
     // フラグメントができたときにlistenerをインスタンス化
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        listener = (NoticeDialogListener) context;
+        listener = (DialogListener) context;
     }
 
     @Override
@@ -31,10 +31,10 @@ public class AllDeleteDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         // ダイアログのタイトル
-        builder.setTitle(R.string.dialog_title);
+        builder.setTitle(R.string.export_title);
 
         // ダイアログのメッセージ文
-        builder.setMessage(R.string.dialog_message);
+        builder.setMessage(R.string.export_message);
 
         DialogClickListener listener = new DialogClickListener();
 
@@ -62,7 +62,7 @@ public class AllDeleteDialog extends DialogFragment {
                 case DialogInterface.BUTTON_POSITIVE:
                     // positiveボタンが押されたときのメソッドを呼び出し
                     // 処理は継承先のShowDataBaseで実行
-                    listener.onDialogPositiveClick(AllDeleteDialog.this);
+                    listener.onDialogPositiveClickExport(CSVExportDialog.this);
                     break;
             }
         }

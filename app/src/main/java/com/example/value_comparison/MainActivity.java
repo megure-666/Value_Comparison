@@ -27,10 +27,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 設定ボタン
-    // 一時的にデータベースのデータを表示するようになってる
     public void onButton_setting(View view) {
+        //Intent intent = new Intent(this, ShowDatabase.class);
+        //startActivity(intent);
+    }
+
+    // 履歴ボタン
+    // データベースのデータを表示するようになってる
+    public void onButton_result(View view) {
         Intent intent = new Intent(this, ShowDatabase.class);
-        //if(check == true) intent.putExtra("CLEAR", true);
         startActivity(intent);
     }
 }

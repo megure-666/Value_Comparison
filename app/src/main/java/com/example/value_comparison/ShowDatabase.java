@@ -4,13 +4,21 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-public class ShowDatabase extends AppCompatActivity implements AllDeleteDialog.NoticeDialogListener{
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class ShowDatabase extends AppCompatActivity
+        implements AllDeleteDialog.NoticeDialogListener, CSVExportDialog.DialogListener{
 
     private VCDatabaseHelper helper = null;
     DBListAdapter sc_adapter;
@@ -94,6 +102,72 @@ public class ShowDatabase extends AppCompatActivity implements AllDeleteDialog.N
 
         // データ一覧を表示
         onShow();
+    }
+
+    // CSV出力ボタン
+    public void onButton_export(View view){
+
+        CSVExportDialog dialog = new CSVExportDialog();
+        dialog.show(getSupportFragmentManager(), "CSV_export");
+
+    }
+
+    // ダイアログでCSVファイル出力を行う際のコールバック関数
+    @Override
+    public boolean onDialogPositiveClickExport(DialogFragment dialog) {
+        // 外部ストレージがマウントされているかチェック
+        String state = Environment.getExternalStorageState();
+        if(!Environment.MEDIA_MOUNTED.equals(state)){
+            return false;
+        }else{
+            File exportDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            if(!exportDir.exists()){
+                exportDir.mkdirs();
+            }
+
+            File file;
+            PrintWriter printWriter = null;
+
+            try {
+                // 現在日時を取得
+                LocalDateTime nowDate = LocalDateTime.now();
+
+                // フォーマット形式を設定
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+                String formatNowDate = dtf.format(nowDate);
+
+                // ファイル作成
+                file = new File(exportDir, "result_" + formatNowDate + ".csv");
+                file.createNewFile();
+                printWriter = new PrintWriter(new FileWriter(file));
+
+                helper = new VCDatabaseHelper(this);
+                SQLiteDatabase db = helper.getReadableDatabase();
+
+                // データベースから取得する項目を設定
+                String[] cols = {DBContract.DBEntry._ID, DBContract.DBEntry.COLUMN_NAME_DETAILS,
+                        DBContract.DBEntry.COLUMN_NAME_PERCENTAGE};
+
+                Cursor cursor = db.query(DBContract.DBEntry.TABLE_NAME, cols, null,
+                        null, null, null, null, null);
+                String[] colsName = {"details", "percentage"};
+
+                // CSVファイルのヘッダーを書き出し
+                printWriter.println("DETAILS,PERCENTAGE");
+
+                // データの行数分CSV形式でデータ書き出し
+                if (cursor.moveToFirst()) {
+                    do {
+                        String details = cursor.getString(cursor.getColumnIndex(colsName[0]));
+                        String percentage = cursor.getString(cursor.getColumnIndex(colsName[1]));
+                    } while (cursor.moveToNext());
+                }
+
+
+            }
+            return true;
+        }
+
     }
 
     // 戻るボタンの処理
