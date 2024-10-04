@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
@@ -150,7 +152,7 @@ public class ShowDatabase extends AppCompatActivity
 
                 Cursor cursor = db.query(DBContract.DBEntry.TABLE_NAME, cols, null,
                         null, null, null, null, null);
-                String[] colsName = {"details", "percentage"};
+                //String[] colsName = {"details", "percentage"};
 
                 // CSVファイルのヘッダーを書き出し
                 printWriter.println("DETAILS,PERCENTAGE");
@@ -158,13 +160,36 @@ public class ShowDatabase extends AppCompatActivity
                 // データの行数分CSV形式でデータ書き出し
                 if (cursor.moveToFirst()) {
                     do {
-                        String details = cursor.getString(cursor.getColumnIndex(colsName[0]));
-                        String percentage = cursor.getString(cursor.getColumnIndex(colsName[1]));
+                        String details = cursor.getString(cursor.getColumnIndex("details"));
+                        String percentage = cursor.getString(cursor.getColumnIndex("percentage"));
+
+                        String record = details + "," + percentage;
+                        printWriter.println(record);
+
                     } while (cursor.moveToNext());
                 }
 
+                cursor.close();
+                db.close();
+
+            } catch (FileNotFoundException e) {
+                // フォルダへの権限がない場合の表示
+                Toast ts = Toast.makeText(this, "アクセス権限がありません", Toast.LENGTH_SHORT);
+                ts.show();
+                return false;
+
+            } catch (Exception e) {
+                Toast ts = Toast.makeText(this, "CSV出力が失敗しました", Toast.LENGTH_SHORT);
+                ts.show();
+                return false;
+
+            } finally {
+                if(printWriter != null) printWriter.close();
 
             }
+
+            Toast ts = Toast.makeText(this, "CSVに出力しました", Toast.LENGTH_SHORT);
+            ts.show();
             return true;
         }
 

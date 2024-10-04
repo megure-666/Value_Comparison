@@ -14,6 +14,8 @@
     <string name="result">結果</string>
     <string name="return_button">戻る</string>
     <string name="all_delete">全削除</string>
+    <string name="result_button">履歴</string>
+    <string name="csv_export">CSV出力</string>
 
     <!-- AllDeleteDialog Message -->
     <string name="dialog_title">保存データの全削除</string>
@@ -38,6 +40,6 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="result_button">履歴</string>
+
 
 </resources>
