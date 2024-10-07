@@ -1,5 +1,6 @@
 package com.example.value_comparison;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -160,8 +161,23 @@ public class ShowDatabase extends AppCompatActivity
                 // データの行数分CSV形式でデータ書き出し
                 if (cursor.moveToFirst()) {
                     do {
-                        String details = cursor.getString(cursor.getColumnIndex("details"));
-                        String percentage = cursor.getString(cursor.getColumnIndex("percentage"));
+
+                        int[] getCursorColumn = new int[2];
+
+                        try{
+                            getCursorColumn[0] = cursor.getColumnIndex("details");
+                            getCursorColumn[1] = cursor.getColumnIndex("percentage");
+
+                        } catch (IndexOutOfBoundsException e){
+                            Toast ts = Toast.makeText(this, "不正な値が配列に入力されました", Toast.LENGTH_SHORT);
+                            ts.show();
+                            return false;
+
+                        }
+
+                        String details = cursor.getString(getCursorColumn[0]);
+                        details = " " + details; // CSVで勝手に日付に変換されないための処理
+                        String percentage = cursor.getString(getCursorColumn[1]);
 
                         String record = details + "," + percentage;
                         printWriter.println(record);
