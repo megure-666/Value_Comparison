@@ -34,6 +34,7 @@ public class ShowDatabase extends AppCompatActivity
         onShow();
     }
 
+    // データベースの情報を表示するメソッド
     protected void onShow(){
 
         // データベースヘルパーを準備
