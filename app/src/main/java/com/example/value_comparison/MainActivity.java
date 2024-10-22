@@ -11,23 +11,17 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    boolean check = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = getIntent();
-        check = intent.getBooleanExtra("CLEAR", false);
-
-       // findViewById(R.id.button_setting).setOnClickListener(v -> {
-        // onButtonSettings();
-        //});
     }
 
     // スタートボタン
     public void onButtonStart(View view) {
+
+        Intent intent;
 
         // 設定画面の値の読み込み(選択肢の数)
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -36,19 +30,26 @@ public class MainActivity extends AppCompatActivity {
 
         switch (checkVal){
             case 3: // 3個
-                Intent intent = new Intent(this, Quiz3.class);
-                if(check) intent.putExtra("CLEAR", true);
+                intent = new Intent(this, Quiz3.class);
+                intent.putExtra("CLEAR", true);
                 startActivity(intent);
                 break;
 
-            case 0:
-                Toast toastError = Toast.makeText(getApplicationContext(),"値が読み込まれませんでした", Toast.LENGTH_SHORT);
-                toastError.show();
+            case 4: // 4個
+                intent = new Intent(this, Quiz4.class);
+                intent.putExtra("CLEAR", true);
+                startActivity(intent);
                 break;
 
-            default:
-                Toast toastNotAvailable = Toast.makeText(getApplicationContext(),"現在は利用できません", Toast.LENGTH_SHORT);
-                toastNotAvailable.show();
+            case 5: // 5個
+                intent = new Intent(this, Quiz5.class);
+                intent.putExtra("CLEAR", true);
+                startActivity(intent);
+                break;
+
+            default: // 読み込みエラー時
+                Toast toastError = Toast.makeText(getApplicationContext(),"値が読み込まれませんでした", Toast.LENGTH_SHORT);
+                toastError.show();
                 break;
         }
     }

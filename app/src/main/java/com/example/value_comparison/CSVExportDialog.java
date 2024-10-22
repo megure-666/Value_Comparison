@@ -41,7 +41,7 @@ public class CSVExportDialog extends DialogFragment {
         // Positiveボタンの内容表示と押したときの処理
         builder.setPositiveButton(R.string.dialog_positive, listener);
 
-        // Nagativeボタンの内容表示と押したときの処理(無いのでnull)
+        // Negativeボタンの内容表示と押したときの処理(無いのでnull)
         builder.setNegativeButton(R.string.dialog_negative, null);
 
         // 設定したダイアログを作成

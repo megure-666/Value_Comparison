@@ -1,21 +1,21 @@
 package com.example.value_comparison;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Result extends AppCompatActivity {
 
     private VCDatabaseHelper helper = null;
     private int id = 0;
-
-    private boolean clear;
-
     private String details_str;
     private String val_str;
 
@@ -50,6 +50,8 @@ public class Result extends AppCompatActivity {
     // DB保存処理
     public void onSave(String details, String val){
 
+        int id = 0;
+
         try(SQLiteDatabase db = helper.getWritableDatabase()){
 
             // 引数をContentValuesに設定
@@ -69,22 +71,47 @@ public class Result extends AppCompatActivity {
         }
     }
 
-    public void onButton_main(View view) {
+    public void onButtonMain(View view) {
 
         // データを保存
         onSave(details_str, val_str);
 
         Intent intent = new Intent(this, MainActivity.class);
-        clear = true;
-        intent.putExtra("CLEAR", clear);
         startActivity(intent);
     }
 
-    public void onButton_continue(View view) {
+    public void onButtonContinue(View view) {
         // 続ける場合はデータをDBに保存しない
-        Intent intent = new Intent(this, Quiz3.class);
-        clear = false;
-        intent.putExtra("CLEAR", clear);
-        startActivity(intent);
+        Intent intent;
+
+        // 設定画面の値の読み込み(選択肢の数)
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String checkChoices = sharedPreferences.getString("choices", "0");
+        int checkVal = Integer.parseInt(checkChoices);
+
+        switch (checkVal){
+            case 3: // 3個
+                intent = new Intent(this, Quiz3.class);
+                intent.putExtra("CLEAR", false);
+                startActivity(intent);
+                break;
+
+            case 4: // 4個
+                intent = new Intent(this, Quiz4.class);
+                intent.putExtra("CLEAR", false);
+                startActivity(intent);
+                break;
+
+            case 5: // 5個
+                intent = new Intent(this, Quiz5.class);
+                intent.putExtra("CLEAR", false);
+                startActivity(intent);
+                break;
+
+            default:
+                Toast toastError = Toast.makeText(getApplicationContext(),"値が読み込まれませんでした", Toast.LENGTH_SHORT);
+                toastError.show();
+                break;
+        }
     }
 }

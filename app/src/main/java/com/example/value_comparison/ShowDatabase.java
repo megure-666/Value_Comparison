@@ -1,6 +1,5 @@
 package com.example.value_comparison;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -71,7 +70,7 @@ public class ShowDatabase extends AppCompatActivity
     }
 
     // 削除ボタン タップ時に呼び出されるメソッド
-    public void onButton_del(View view){
+    public void onButtonDel(View view){
 
         // DBListAdapterで設定されたリスト内の位置を取得
         int pos = (Integer)view.getTag();
@@ -90,7 +89,7 @@ public class ShowDatabase extends AppCompatActivity
     }
 
     // 全削除ボタン
-    public void onButton_alldel(View view){
+    public void onButtonAllDel(View view){
 
         AllDeleteDialog dialog = new AllDeleteDialog();
         dialog.show(getSupportFragmentManager(), "all_del");
@@ -109,7 +108,7 @@ public class ShowDatabase extends AppCompatActivity
     }
 
     // CSV出力ボタン
-    public void onButton_export(View view){
+    public void onButtonExport(View view){
 
         CSVExportDialog dialog = new CSVExportDialog();
         dialog.show(getSupportFragmentManager(), "CSV_export");
@@ -213,7 +212,7 @@ public class ShowDatabase extends AppCompatActivity
     }
 
     // 戻るボタンの処理
-    public void onButton_back(View view) {
+    public void onButtonBack(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         // intent.putExtra("CLEAR", clear);
         startActivity(intent);

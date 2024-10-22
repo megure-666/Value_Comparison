@@ -30,7 +30,7 @@
         android:id="@+id/button_delete"
         android:layout_width="50dp"
         android:layout_height="70dp"
-        android:onClick="onButton_del"
+        android:onClick="onButtonDel"
         app:srcCompat="@drawable/baseline_close_24"
         app:layout_constraintStart_toEndOf="@id/text_percentage"
         app:layout_constraintBottom_toBottomOf="parent"

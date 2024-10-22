@@ -4,51 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Quiz3">
+    tools:context=".Quiz4">
 
     <TextView
         android:id="@+id/quiz_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/quiz3_title"
+        android:text="@string/quiz4_title"
         android:textSize="60sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/option31"/>
+        app:layout_constraintBottom_toTopOf="@id/option41"/>
 
     <Button
-        android:id="@+id/option31"
+        android:id="@+id/option41"
         android:layout_width="160sp"
         android:layout_height="wrap_content"
         android:onClick="onClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/option32"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/quiz_title"
+        app:layout_constraintBottom_toTopOf="@id/option43"
+        app:layout_constraintEnd_toStartOf="@id/option42"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/option32"
+        android:id="@+id/option42"
         android:layout_width="160sp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:onClick="onClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/option33"
-        app:layout_constraintStart_toEndOf="@id/option31"
         app:layout_constraintTop_toBottomOf="@id/quiz_title"
+        app:layout_constraintBottom_toTopOf="@id/option44"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/option41"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/option33"
+        android:id="@+id/option43"
         android:layout_width="160sp"
         android:layout_height="wrap_content"
         android:onClick="onClick"
+        app:layout_constraintTop_toBottomOf="@id/option41"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/option44"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/option44"
+        android:layout_width="160sp"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        app:layout_constraintTop_toBottomOf="@id/option42"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/option32"
-        app:layout_constraintTop_toBottomOf="@id/quiz_title"
+        app:layout_constraintStart_toEndOf="@id/option43"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
