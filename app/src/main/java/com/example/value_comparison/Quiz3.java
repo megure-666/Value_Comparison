@@ -8,31 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 
-public class quiz extends AppCompatActivity {
+public class Quiz3 extends AppCompatActivity {
 
     int quizNumber[] = new int[3];      // 乱数生成用の配列
     String strNumber[] = new String[3]; // 文字列に変換した数字用の配列
     int maxNumber = 0;                  // 最大値の配列の番号を保持する変数
-    //static int quizCount = 0;                  // 問題数のカウント
     String maxNumberStr = "0";
     boolean check = false;
-    private Button answer1, answer2, answer3;
 
     public void generateNumber () {
 
-        // 配列の初期化
-        /*
-        for(int r = 0; r < quiz_number.length; r++){
-            quiz_number[r] = -1;
-        }
-         */
         Random random = new Random();
         for (int i = 0; i < 3; i++) {
             // 乱数の生成
@@ -66,7 +54,7 @@ public class quiz extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
+        setContentView(R.layout.activity_quiz3);
 
         Intent intent = getIntent();
         check = intent.getBooleanExtra("CLEAR", true);
@@ -83,21 +71,11 @@ public class quiz extends AppCompatActivity {
         option3.setText(strNumber[2]);
         option3.setTextSize(60);
 
-        answer1 = findViewById(R.id.option1);
-        answer2 = findViewById(R.id.option2);
-        answer3 = findViewById(R.id.option3);
-
-        //answer1.setOnClickListener(this);
-        //answer2.setOnClickListener(this);
-        //answer3.setOnClickListener(this);
-
-        //if(check) quizCount = 0;
-        //quizCount++;
     }
     public void onClick(View view){
         Button answer = findViewById(view.getId());
         String btntxt = answer.getText().toString();
-        boolean judge = false;
+        boolean judge;
         Intent i;
 
         if(btntxt.equals(maxNumberStr)){
@@ -105,10 +83,10 @@ public class quiz extends AppCompatActivity {
         }else{
             judge = false;
         }
-        i = new Intent(this, judge.class);
+
+        i = new Intent(this, Judge.class);
         i.putExtra("RESULT", judge);
         i.putExtra("QUIZ_NUMBER", quizNumber); // 出題用の配列
-        //i.putExtra("QUIZ", quizCount);
         if(check == false) i.putExtra("CLEAR", false);
         startActivity(i);
 

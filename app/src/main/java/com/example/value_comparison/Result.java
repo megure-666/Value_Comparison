@@ -4,13 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class result extends AppCompatActivity {
+public class Result extends AppCompatActivity {
 
     private VCDatabaseHelper helper = null;
     private int id = 0;
@@ -36,7 +35,7 @@ public class result extends AppCompatActivity {
         // 正解数の表示
         TextView details = findViewById(R.id.details);
         details.setTextSize(80);
-        details_str = String.valueOf(correctCount) + " / " + String.valueOf(quizCount);
+        details_str = correctCount + " / " + quizCount;
         details.setText(details_str);
 
         // 正答率の表示
@@ -82,7 +81,8 @@ public class result extends AppCompatActivity {
     }
 
     public void onButton_continue(View view) {
-        Intent intent = new Intent(this, quiz.class);
+        // 続ける場合はデータをDBに保存しない
+        Intent intent = new Intent(this, Quiz3.class);
         clear = false;
         intent.putExtra("CLEAR", clear);
         startActivity(intent);

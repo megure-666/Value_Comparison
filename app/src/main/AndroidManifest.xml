@@ -19,13 +19,13 @@
             android:name=".ShowDatabase"
             android:exported="false" />
         <activity
-            android:name=".judge"
+            android:name=".Judge"
             android:exported="false" />
         <activity
-            android:name=".result"
+            android:name=".Result"
             android:exported="false" />
         <activity
-            android:name=".quiz"
+            android:name=".Quiz3"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

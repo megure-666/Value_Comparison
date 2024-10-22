@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.Arrays;
 
-public class judge extends AppCompatActivity {
+public class Judge extends AppCompatActivity {
 
     static int quizCount;        // 問題数のカウント
     static int correctCount = 0; // 正解数のカウント
@@ -48,24 +48,21 @@ public class judge extends AppCompatActivity {
         // 数を昇順にソート
         Arrays.sort(number);
 
-
         StringBuilder sb = new StringBuilder();
-        for(int i = 2; i >= 0; i--){
+        for(int i = number.length - 1; i >= 0; i--){
             sb.append(number[i]);
             if(i!=0){
                 sb.append(" > ");
             }
         }
         String explain = sb.toString();
-
-        //String explain = String.valueOf(number[0]);
         TextView ans = findViewById(R.id.op);
         ans.setText(explain);
-        ans.setTextSize(160);
+
     }
 
     public void onButton_result(View view) {
-        Intent intent = new Intent(this, result.class);
+        Intent intent = new Intent(this, Result.class);
         intent.putExtra("CORRECT",correctCount);
         //intent.putExtra("INCORRECT", incorrectcount);
         intent.putExtra("QUIZ", quizCount);
@@ -73,7 +70,7 @@ public class judge extends AppCompatActivity {
     }
 
     public void onButton_quiz(View view) {
-        Intent intent = new Intent(this, quiz.class);
+        Intent intent = new Intent(this, Quiz3.class);
         intent.putExtra("CLEAR", false);
         startActivity(intent);
     }

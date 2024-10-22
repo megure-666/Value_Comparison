@@ -1,16 +1,11 @@
 package com.example.value_comparison;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (checkVal){
             case 3: // 3個
-                Intent intent = new Intent(this, quiz.class);
+                Intent intent = new Intent(this, Quiz3.class);
                 if(check) intent.putExtra("CLEAR", true);
                 startActivity(intent);
                 break;
