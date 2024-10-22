@@ -1,12 +1,15 @@
 <resources>
-    <!-- Reply Preference -->
-    <string-array name="reply_entries">
-        <item>Reply</item>
-        <item>Reply to all</item>
+    
+    <string-array name="quiz_choices">
+        <item>3個</item>
+        <item>4個</item>
+        <item>5個</item>
     </string-array>
 
-    <string-array name="reply_values">
-        <item>reply</item>
-        <item>reply_all</item>
+    <string-array name="quiz_choices_number">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
+
 </resources>

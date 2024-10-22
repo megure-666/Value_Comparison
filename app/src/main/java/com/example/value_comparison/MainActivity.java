@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,9 +33,29 @@ public class MainActivity extends AppCompatActivity {
 
     // スタートボタン
     public void onButtonStart(View view) {
-        Intent intent = new Intent(this, quiz.class);
-        if(check) intent.putExtra("CLEAR", true);
-        startActivity(intent);
+
+        // 設定画面の値の読み込み(選択肢の数)
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String checkChoices = sharedPreferences.getString("choices", "0");
+        int checkVal = Integer.parseInt(checkChoices);
+
+        switch (checkVal){
+            case 3: // 3個
+                Intent intent = new Intent(this, quiz.class);
+                if(check) intent.putExtra("CLEAR", true);
+                startActivity(intent);
+                break;
+
+            case 0:
+                Toast toastError = Toast.makeText(getApplicationContext(),"値が読み込まれませんでした", Toast.LENGTH_SHORT);
+                toastError.show();
+                break;
+
+            default:
+                Toast toastNotAvailable = Toast.makeText(getApplicationContext(),"現在は利用できません", Toast.LENGTH_SHORT);
+                toastNotAvailable.show();
+                break;
+        }
     }
 
     // 設定ボタン
