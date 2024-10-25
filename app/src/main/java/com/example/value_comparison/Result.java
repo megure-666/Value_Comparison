@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Result extends AppCompatActivity {
 
     private VCDatabaseHelper helper = null;
@@ -57,6 +60,18 @@ public class Result extends AppCompatActivity {
             // 引数をContentValuesに設定
             // ContentValuesは、項目名と値をセットで保存できるオブジェクト
             ContentValues cv = new ContentValues();
+
+            // 現在日時を取得
+            LocalDateTime nowDate = LocalDateTime.now();
+            // フォーマット形式を設定
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+            String formatNowDate = dtf.format(nowDate);
+            cv.put(DBContract.DBEntry.COLUMN_NAME_DATE, formatNowDate);
+            // 設定画面の値の読み込み(選択肢の数)
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            String checkChoices = sharedPreferences.getString("choices", "0");
+            int checkVal = Integer.parseInt(checkChoices);
+            cv.put(DBContract.DBEntry.COLUMN_NAME_QUANTITY, checkVal);
             cv.put(DBContract.DBEntry.COLUMN_NAME_DETAILS, details);
             cv.put(DBContract.DBEntry.COLUMN_NAME_PERCENTAGE, val);
 

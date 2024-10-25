@@ -7,24 +7,48 @@
     android:descendantFocusability="blocksDescendants">
 
     <TextView
-        android:id="@+id/text_details"
-        android:layout_width="360dp"
+        android:id="@+id/text_date"
+        android:layout_width="350dp"
         android:layout_height="70dp"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/text_quantity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/text_quantity"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@id/text_date"
+        app:layout_constraintEnd_toStartOf="@id/text_details"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/text_details"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@id/text_quantity"
         app:layout_constraintEnd_toStartOf="@id/text_percentage"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/text_percentage"
-        android:layout_width="360dp"
+        android:layout_width="150dp"
         android:layout_height="70dp"
         android:textSize="36sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/text_details"
-        app:layout_constraintEnd_toStartOf="@id/button_delete"/>
+        app:layout_constraintEnd_toStartOf="@id/button_delete"
+        android:gravity="center"/>
 
     <ImageButton
         android:id="@+id/button_delete"

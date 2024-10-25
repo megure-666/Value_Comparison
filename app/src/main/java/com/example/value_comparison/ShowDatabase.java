@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,8 +41,13 @@ public class ShowDatabase extends AppCompatActivity
         helper = new VCDatabaseHelper(this);
 
         // データベースから取得する項目を設定
-        String[] cols = {DBContract.DBEntry._ID, DBContract.DBEntry.COLUMN_NAME_DETAILS,
+        String[] cols = {DBContract.DBEntry._ID,
+                DBContract.DBEntry.COLUMN_NAME_DATE,
+                DBContract.DBEntry.COLUMN_NAME_QUANTITY,
+                DBContract.DBEntry.COLUMN_NAME_DETAILS,
                 DBContract.DBEntry.COLUMN_NAME_PERCENTAGE};
+
+
 
         // 読み込みモードでデータベースをオープン
         try (SQLiteDatabase db = helper.getReadableDatabase()){
@@ -52,10 +58,13 @@ public class ShowDatabase extends AppCompatActivity
                     null, null, null, null, null);
 
             // 検索結果から取得する項目を定義
-            String[] from = {DBContract.DBEntry.COLUMN_NAME_DETAILS, DBContract.DBEntry.COLUMN_NAME_PERCENTAGE};
+            String[] from = {DBContract.DBEntry.COLUMN_NAME_DATE,
+                    DBContract.DBEntry.COLUMN_NAME_QUANTITY,
+                    DBContract.DBEntry.COLUMN_NAME_DETAILS,
+                    DBContract.DBEntry.COLUMN_NAME_PERCENTAGE};
 
             // データを設定するレイアウトのフィールドを定義
-            int[] to = {R.id.text_details, R.id.text_percentage};
+            int[] to = {R.id.text_date, R.id.text_quantity, R.id.text_details, R.id.text_percentage};
 
             // ListViewの1行分のレイアウト(row_main.xml)と検索結果を関連付け
             sc_adapter = new DBListAdapter(this, R.layout.row_main, cursor, from, to, 0);
@@ -148,7 +157,10 @@ public class ShowDatabase extends AppCompatActivity
                 SQLiteDatabase db = helper.getReadableDatabase();
 
                 // データベースから取得する項目を設定
-                String[] cols = {DBContract.DBEntry._ID, DBContract.DBEntry.COLUMN_NAME_DETAILS,
+                String[] cols = {DBContract.DBEntry._ID,
+                        DBContract.DBEntry.COLUMN_NAME_DATE,
+                        DBContract.DBEntry.COLUMN_NAME_QUANTITY,
+                        DBContract.DBEntry.COLUMN_NAME_DETAILS,
                         DBContract.DBEntry.COLUMN_NAME_PERCENTAGE};
 
                 Cursor cursor = db.query(DBContract.DBEntry.TABLE_NAME, cols, null,
@@ -156,17 +168,20 @@ public class ShowDatabase extends AppCompatActivity
                 //String[] colsName = {"details", "percentage"};
 
                 // CSVファイルのヘッダーを書き出し
-                printWriter.println("DETAILS,PERCENTAGE");
+                printWriter.println(" ,NAME,DATE,QUANTITY,DETAILS,PERCENTAGE");
 
                 // データの行数分CSV形式でデータ書き出し
                 if (cursor.moveToFirst()) {
                     do {
 
-                        int[] getCursorColumn = new int[2];
+                        // DBからのデータの読み込み
+                        int[] getCursorColumn = new int[4];
 
                         try{
-                            getCursorColumn[0] = cursor.getColumnIndex("details");
-                            getCursorColumn[1] = cursor.getColumnIndex("percentage");
+                            getCursorColumn[0] = cursor.getColumnIndex("date");
+                            getCursorColumn[1] = cursor.getColumnIndex("quantity");
+                            getCursorColumn[2] = cursor.getColumnIndex("details");
+                            getCursorColumn[3] = cursor.getColumnIndex("percentage");
 
                         } catch (IndexOutOfBoundsException e){
                             Toast ts = Toast.makeText(this, "不正な値が配列に入力されました", Toast.LENGTH_SHORT);
@@ -175,11 +190,14 @@ public class ShowDatabase extends AppCompatActivity
 
                         }
 
-                        String details = cursor.getString(getCursorColumn[0]);
+                        // CSVファイルへの書き出し
+                        String date = cursor.getString(getCursorColumn[0]);
+                        String quantity = cursor.getString(getCursorColumn[1]);
+                        String details = cursor.getString(getCursorColumn[2]);
                         details = " " + details; // CSVで勝手に日付に変換されないための処理
-                        String percentage = cursor.getString(getCursorColumn[1]);
+                        String percentage = cursor.getString(getCursorColumn[3]);
 
-                        String record = details + "," + percentage;
+                        String record = " ," + "数の大小比較 " + "," + date + "," + quantity + "," + details + "," + percentage;
                         printWriter.println(record);
 
                     } while (cursor.moveToNext());

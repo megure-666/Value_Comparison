@@ -8,7 +8,7 @@ public class VCDatabaseHelper extends SQLiteOpenHelper {
 
     // データベースのバージョン
     // テーブルの内容などを変更したら、この数字を変更する
-    static final private int VERSION = 2;
+    static final private int VERSION = 3;
 
     // データベース名
     static final private String DBNAME = "vc.db";
@@ -25,6 +25,8 @@ public class VCDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "CREATE TABLE "+ DBContract.DBEntry.TABLE_NAME + " (" +
                         DBContract.DBEntry._ID + " INTEGER PRIMARY KEY, " +
+                        DBContract.DBEntry.COLUMN_NAME_DATE + " TEXT default 'NO DATA'," +
+                        DBContract.DBEntry.COLUMN_NAME_QUANTITY + " TEXT default 'NO DATA'," +
                         DBContract.DBEntry.COLUMN_NAME_DETAILS + " TEXT default 'NO DATA'," +
                         DBContract.DBEntry.COLUMN_NAME_PERCENTAGE + " TEXT default 'NO DATA'," +
                         DBContract.DBEntry.COLUMN_NAME_UPDATE + " INTEGER DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime')))");
