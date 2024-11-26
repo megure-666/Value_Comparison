@@ -38,11 +38,11 @@ public class Judge extends AppCompatActivity {
         TextView title = findViewById(R.id.judge_title);
         if(judge){
             title.setText("正解");
-            title.setTextColor(Color.RED);
+            title.setTextColor(getResources().getColor(R.color.red));
             correctCount++;
         }else{
             title.setText("不正解");
-            title.setTextColor(Color.BLUE);
+            title.setTextColor(getResources().getColor(R.color.blue));
             //incorrectcount++;
         }
         title.setTextSize(120);
@@ -60,10 +60,11 @@ public class Judge extends AppCompatActivity {
         String explain = sb.toString();
         TextView ans = findViewById(R.id.op);
         ans.setText(explain);
+        ans.setTextColor(getResources().getColor(R.color.black));
         if(number.length == 5){
             ans.setTextSize(120);
         }else{
-            ans.setTextSize(160);
+            ans.setTextSize(150);
         }
 
     }

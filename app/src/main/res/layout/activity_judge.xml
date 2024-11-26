@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:text="@string/explain"
         android:textSize="60sp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/op"
         app:layout_constraintBottom_toTopOf="@id/next_top"
         app:layout_constraintStart_toStartOf="parent"

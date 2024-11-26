@@ -15,6 +15,7 @@
         android:id="@+id/retutn_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
         android:text="@string/return_button"
         android:textSize="50sp"
         android:onClick="onButtonBack"
