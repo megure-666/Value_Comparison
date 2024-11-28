@@ -13,9 +13,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -46,8 +49,6 @@ public class ShowDatabase extends AppCompatActivity
                 DBContract.DBEntry.COLUMN_NAME_QUANTITY,
                 DBContract.DBEntry.COLUMN_NAME_DETAILS,
                 DBContract.DBEntry.COLUMN_NAME_PERCENTAGE};
-
-
 
         // 読み込みモードでデータベースをオープン
         try (SQLiteDatabase db = helper.getReadableDatabase()){
@@ -151,7 +152,10 @@ public class ShowDatabase extends AppCompatActivity
                 // ファイル作成
                 file = new File(exportDir, "result_" + formatNowDate + ".csv");
                 file.createNewFile();
-                printWriter = new PrintWriter(new FileWriter(file));
+                //printWriter = new PrintWriter(new FileWriter(file)); // UTF-8 ver.
+                // 文字コードをShift-JISに変更しないとアプリ名が文字化けしてしまう
+                printWriter = new PrintWriter(new BufferedWriter
+                        (new OutputStreamWriter(new FileOutputStream(file), "Shift-JIS")));
 
                 helper = new VCDatabaseHelper(this);
                 SQLiteDatabase db = helper.getReadableDatabase();
