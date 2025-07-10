@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,55 +17,64 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    }
+        // スタートボタン
+        Button startButton = (Button) findViewById(R.id.button_start);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
 
-    // スタートボタン
-    public void onButtonStart(View view) {
+                // 設定画面の値の読み込み(選択肢の数)
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String checkChoices = sharedPreferences.getString("choices", "0");
+                int checkVal = Integer.parseInt(checkChoices);
 
-        Intent intent;
+                switch (checkVal) {
+                    case 3: // 3個
+                        intent = new Intent(getApplication(), Quiz3.class);
+                        intent.putExtra("CLEAR", true);
+                        startActivity(intent);
+                        break;
 
-        // 設定画面の値の読み込み(選択肢の数)
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String checkChoices = sharedPreferences.getString("choices", "0");
-        int checkVal = Integer.parseInt(checkChoices);
+                    case 4: // 4個
+                        intent = new Intent(getApplication(), Quiz4.class);
+                        intent.putExtra("CLEAR", true);
+                        startActivity(intent);
+                        break;
 
-        switch (checkVal){
-            case 3: // 3個
-                intent = new Intent(this, Quiz3.class);
-                intent.putExtra("CLEAR", true);
+                    case 5: // 5個
+                        intent = new Intent(getApplication(), Quiz5.class);
+                        intent.putExtra("CLEAR", true);
+                        startActivity(intent);
+                        break;
+
+                    default: // 読み込みエラー時
+                        Toast toastError = Toast.makeText(getApplicationContext(), "値が読み込まれませんでした", Toast.LENGTH_SHORT);
+                        toastError.show();
+                        break;
+                }
+            }
+        });
+
+        // 設定ボタン
+        Button settingsButton = (Button) findViewById(R.id.button_setting);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(), Settings.class);
                 startActivity(intent);
-                break;
+            }
+        });
 
-            case 4: // 4個
-                intent = new Intent(this, Quiz4.class);
-                intent.putExtra("CLEAR", true);
+        // 履歴ボタン
+        // データベースのデータを表示するようになってる
+        Button resultButton = (Button) findViewById(R.id.button_result);
+        resultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(), ShowDatabase.class);
                 startActivity(intent);
-                break;
-
-            case 5: // 5個
-                intent = new Intent(this, Quiz5.class);
-                intent.putExtra("CLEAR", true);
-                startActivity(intent);
-                break;
-
-            default: // 読み込みエラー時
-                Toast toastError = Toast.makeText(getApplicationContext(),"値が読み込まれませんでした", Toast.LENGTH_SHORT);
-                toastError.show();
-                break;
-        }
-    }
-
-    // 設定ボタン
-    public void onButtonSettings(View view) {
-        Intent intent = new Intent(this, Settings.class);
-        startActivity(intent);
-    }
-
-
-    // 履歴ボタン
-    // データベースのデータを表示するようになってる
-    public void onButtonResult(View view) {
-        Intent intent = new Intent(this, ShowDatabase.class);
-        startActivity(intent);
+            }
+        });
     }
 }

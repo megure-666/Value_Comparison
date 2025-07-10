@@ -41,11 +41,10 @@
 
     <Button
         android:id="@+id/restart"
-        android:layout_width="500sp"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:text="@string/quiz_continue"
         android:textSize="80sp"
-        android:onClick="onButtonContinue"
         app:layout_constraintTop_toBottomOf="@id/details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,11 +52,10 @@
 
     <Button
         android:id="@+id/next_top"
-        android:layout_width="500sp"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:text="@string/to_start"
         android:textSize="80sp"
-        android:onClick="onButtonMain"
         app:layout_constraintTop_toBottomOf="@id/details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/restart"

@@ -198,7 +198,7 @@ public class ShowDatabase extends AppCompatActivity
                         String date = cursor.getString(getCursorColumn[0]);
                         String quantity = cursor.getString(getCursorColumn[1]);
                         String details = cursor.getString(getCursorColumn[2]);
-                        details = " " + details; // CSVで勝手に日付に変換されないための処理
+                        details = " " + details; // CSVで勝手に日付に変換されないための空白
                         String percentage = cursor.getString(getCursorColumn[3]);
 
                         String record = " ," + "数の大小比較 " + "," + date + "," + quantity + "," + details + "," + percentage;

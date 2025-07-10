@@ -27,20 +27,72 @@ public class Quiz3 extends AppCompatActivity {
         Intent intent = getIntent();
         check = intent.getBooleanExtra("CLEAR", true);
 
+        // 数字の生成
         generateNumber();
 
+        // 数字のボタンへのセット
+        // before txt size = 60
         TextView option1 = (TextView) findViewById(R.id.option31);
         option1.setText(strNumber[0]);
-        option1.setTextSize(60);
+        option1.setTextSize(120);
         TextView option2 = (TextView) findViewById(R.id.option32);
         option2.setText(strNumber[1]);
-        option2.setTextSize(60);
+        option2.setTextSize(120);
         TextView option3 = (TextView) findViewById(R.id.option33);
         option3.setText(strNumber[2]);
-        option3.setTextSize(60);
+        option3.setTextSize(120);
+
+        // 選択されたボタンを感知する
+        View.OnClickListener next = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Button answer = findViewById(view.getId());
+                String btnTxt = answer.getText().toString();
+                boolean judge = false;
+                Intent i;
+
+                if(btnTxt.equals(maxNumberStr)) judge = true;
+
+                i = new Intent(getApplication(), Judge.class);
+                i.putExtra("RESULT", judge);
+                i.putExtra("QUIZ_NUMBER", quizNumber); // 出題用の配列
+                if(!check) i.putExtra("CLEAR", false);
+                startActivity(i);
+            }
+        };
+        findViewById(R.id.option31).setOnClickListener(next);
+        findViewById(R.id.option32).setOnClickListener(next);
+        findViewById(R.id.option33).setOnClickListener(next);
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+
+        // 保存領域にセットした値を保存
+        outState.putStringArray("STRNUM", strNumber);
+        outState.putString("MAXNUMSTR", maxNumberStr);
+        outState.putIntArray("NUMBER", quizNumber);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstance){
+        super.onRestoreInstanceState(savedInstance);
+
+        strNumber = savedInstance.getStringArray("STRNUM");
+        maxNumberStr = savedInstance.getString("MAXNUMSTR");
+        quizNumber = savedInstance.getIntArray("NUMBER");
+
+        TextView option1 = (TextView) findViewById(R.id.option31);
+        option1.setText(strNumber[0]);
+        TextView option2 = (TextView) findViewById(R.id.option32);
+        option2.setText(strNumber[1]);
+        TextView option3 = (TextView) findViewById(R.id.option33);
+        option3.setText(strNumber[2]);
+    }
+
+    // 乱数生成メソッド
     private void generateNumber () {
 
         Random random = new Random();
@@ -71,21 +123,5 @@ public class Quiz3 extends AppCompatActivity {
             }
 
         }
-    }
-
-    public void onClick(View view){
-        Button answer = findViewById(view.getId());
-        String btnTxt = answer.getText().toString();
-        boolean judge = false;
-        Intent i;
-
-        if(btnTxt.equals(maxNumberStr)) judge = true;
-
-        i = new Intent(this, Judge.class);
-        i.putExtra("RESULT", judge);
-        i.putExtra("QUIZ_NUMBER", quizNumber); // 出題用の配列
-        if(!check) i.putExtra("CLEAR", false);
-        startActivity(i);
-
     }
 }

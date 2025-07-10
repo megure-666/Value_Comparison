@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,58 @@ public class Result extends AppCompatActivity {
         val_str = String.format("%.2f",val);
         percentage.setText(val_str + " %");
 
+        // トップ画面へ遷移する処理
+        Button topButton = (Button) findViewById(R.id.next_top);
+        topButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // データを保存
+                onSave(details_str, val_str);
+
+                Intent intent = new Intent(getApplication(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // クイズを継続する処理
+        Button restartButton = (Button) findViewById(R.id.restart);
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 続ける場合はデータをDBに保存しない
+                Intent intent;
+
+                // 設定画面の値の読み込み(選択肢の数)
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String checkChoices = sharedPreferences.getString("choices", "0");
+                int checkVal = Integer.parseInt(checkChoices);
+
+                switch (checkVal){
+                    case 3: // 3個
+                        intent = new Intent(getApplication(), Quiz3.class);
+                        intent.putExtra("CLEAR", false);
+                        startActivity(intent);
+                        break;
+
+                    case 4: // 4個
+                        intent = new Intent(getApplication(), Quiz4.class);
+                        intent.putExtra("CLEAR", false);
+                        startActivity(intent);
+                        break;
+
+                    case 5: // 5個
+                        intent = new Intent(getApplication(), Quiz5.class);
+                        intent.putExtra("CLEAR", false);
+                        startActivity(intent);
+                        break;
+
+                    default:
+                        Toast toastError = Toast.makeText(getApplicationContext(),"値が読み込まれませんでした", Toast.LENGTH_SHORT);
+                        toastError.show();
+                        break;
+                }
+            }
+        });
     }
 
     // DB保存処理
@@ -83,50 +136,6 @@ public class Result extends AppCompatActivity {
                 db.update(DBContract.DBEntry.TABLE_NAME, cv,
                         DBContract.DBEntry._ID + " = ?", new String[] {String.valueOf(id)});
             }
-        }
-    }
-
-    public void onButtonMain(View view) {
-
-        // データを保存
-        onSave(details_str, val_str);
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void onButtonContinue(View view) {
-        // 続ける場合はデータをDBに保存しない
-        Intent intent;
-
-        // 設定画面の値の読み込み(選択肢の数)
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String checkChoices = sharedPreferences.getString("choices", "0");
-        int checkVal = Integer.parseInt(checkChoices);
-
-        switch (checkVal){
-            case 3: // 3個
-                intent = new Intent(this, Quiz3.class);
-                intent.putExtra("CLEAR", false);
-                startActivity(intent);
-                break;
-
-            case 4: // 4個
-                intent = new Intent(this, Quiz4.class);
-                intent.putExtra("CLEAR", false);
-                startActivity(intent);
-                break;
-
-            case 5: // 5個
-                intent = new Intent(this, Quiz5.class);
-                intent.putExtra("CLEAR", false);
-                startActivity(intent);
-                break;
-
-            default:
-                Toast toastError = Toast.makeText(getApplicationContext(),"値が読み込まれませんでした", Toast.LENGTH_SHORT);
-                toastError.show();
-                break;
         }
     }
 }
