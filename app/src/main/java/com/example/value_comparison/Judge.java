@@ -46,11 +46,12 @@ public class Judge extends AppCompatActivity {
             title.setTextColor(getResources().getColor(R.color.blue));
             //incorrectcount++;
         }
-        title.setTextSize(120);
+        //title.setTextSize(120);
 
         // 数を昇順にソート
         Arrays.sort(number);
 
+        // 解説画面の文字
         StringBuilder sb = new StringBuilder();
         for(int i = number.length - 1; i >= 0; i--){
             sb.append(number[i]);
@@ -62,11 +63,13 @@ public class Judge extends AppCompatActivity {
         TextView ans = findViewById(R.id.op);
         ans.setText(explain);
         ans.setTextColor(getResources().getColor(R.color.black));
+        /*
         if(number.length == 5){
             ans.setTextSize(120);
         }else{
             ans.setTextSize(150);
         }
+        */
 
         Button resultButton = (Button) findViewById(R.id.next_result);
         resultButton.setOnClickListener(new View.OnClickListener() {

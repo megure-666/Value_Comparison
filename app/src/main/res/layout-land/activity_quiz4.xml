@@ -4,86 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Result">
+    tools:context=".Quiz4">
 
     <TextView
-        android:id="@+id/result_title"
+        android:id="@+id/quiz_title"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/result"
-        android:gravity="center"
+        android:text="@string/quiz4_title"
         android:autoSizeTextType="uniform"
         android:textColor="@color/black"
         app:layout_constraintWidth_default= "percent"
-        app:layout_constraintWidth_percent= ".35"
+        app:layout_constraintWidth_percent= ".95"
         app:layout_constraintHeight_default= "percent"
-        app:layout_constraintHeight_percent= ".1"
+        app:layout_constraintHeight_percent= ".2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:id="@+id/details"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:autoSizeTextType="uniform"
-        android:textColor="@color/black"
-        app:layout_constraintWidth_default= "percent"
-        app:layout_constraintWidth_percent= "1"
-        app:layout_constraintHeight_default= "percent"
-        app:layout_constraintHeight_percent= ".1"
-        app:layout_constraintTop_toBottomOf="@id/result_title"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/percentage"/>
+        app:layout_constraintBottom_toTopOf="@id/option41"/>
 
-    <TextView
-        android:id="@+id/percentage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:autoSizeTextType="uniform"
-        android:textColor="@color/black"
-        app:layout_constraintWidth_default= "percent"
-        app:layout_constraintWidth_percent= "1"
-        app:layout_constraintHeight_default= "percent"
-        app:layout_constraintHeight_percent= ".1"
-        app:layout_constraintTop_toBottomOf="@id/details"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/restart"/>
-
+    <!-- before width size = 160 -->
     <Button
-        android:id="@+id/restart"
+        android:id="@+id/option41"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/quiz_continue"
         android:autoSizeTextType="uniform"
         android:background="@drawable/button_square_cornercercle"
         app:layout_constraintWidth_default= "percent"
-        app:layout_constraintWidth_percent= ".95"
+        app:layout_constraintWidth_percent= ".25"
         app:layout_constraintHeight_default= "percent"
-        app:layout_constraintHeight_percent= ".1"
-        app:layout_constraintTop_toBottomOf="@id/percentage"
-        app:layout_constraintBottom_toTopOf="@id/next_top"
+        app:layout_constraintHeight_percent= ".25"
+        app:layout_constraintTop_toBottomOf="@id/quiz_title"
+        app:layout_constraintBottom_toTopOf="@id/option43"
+        app:layout_constraintEnd_toStartOf="@id/option42"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/next_top"
+        android:id="@+id/option42"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/to_start"
         android:autoSizeTextType="uniform"
         android:background="@drawable/button_square_cornercercle"
         app:layout_constraintWidth_default= "percent"
-        app:layout_constraintWidth_percent= ".95"
+        app:layout_constraintWidth_percent= ".25"
         app:layout_constraintHeight_default= "percent"
-        app:layout_constraintHeight_percent= ".1"
-        app:layout_constraintTop_toBottomOf="@id/restart"
+        app:layout_constraintHeight_percent= ".25"
+        app:layout_constraintTop_toBottomOf="@id/quiz_title"
+        app:layout_constraintBottom_toTopOf="@id/option44"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/option41"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/option43"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/button_square_cornercercle"
+        app:layout_constraintWidth_default= "percent"
+        app:layout_constraintWidth_percent= ".25"
+        app:layout_constraintHeight_default= "percent"
+        app:layout_constraintHeight_percent= ".25"
+        app:layout_constraintTop_toBottomOf="@id/option41"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/option44"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/option44"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/button_square_cornercercle"
+        app:layout_constraintWidth_default= "percent"
+        app:layout_constraintWidth_percent= ".25"
+        app:layout_constraintHeight_default= "percent"
+        app:layout_constraintHeight_percent= ".25"
+        app:layout_constraintTop_toBottomOf="@id/option42"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/option43"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

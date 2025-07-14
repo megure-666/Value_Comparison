@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Quiz5">
+
+    <TextView
+        android:id="@+id/quiz_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:text="@string/quiz5_title"
+        android:textSize="60sp"
+        android:textColor="@color/black"
+        app:layout_constraintWidth_default= "percent"
+        app:layout_constraintWidth_percent= ".95"
+        app:layout_constraintHeight_default= "percent"
+        app:layout_constraintHeight_percent= ".2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/option51"/>
+
+    <!-- before width size = 160 -->
+    <Button
+        android:id="@+id/option51"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/button_square_cornercercle"
+        app:layout_constraintWidth_default= "percent"
+        app:layout_constraintWidth_percent= ".25"
+        app:layout_constraintHeight_default= "percent"
+        app:layout_constraintHeight_percent= ".25"
+        app:layout_constraintTop_toBottomOf="@id/quiz_title"
+        app:layout_constraintBottom_toTopOf="@id/option54"
+        app:layout_constraintEnd_toStartOf="@id/option52"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/option52"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/button_square_cornercercle"
+        app:layout_constraintWidth_default= "percent"
+        app:layout_constraintWidth_percent= ".25"
+        app:layout_constraintHeight_default= "percent"
+        app:layout_constraintHeight_percent= ".25"
+        app:layout_constraintTop_toBottomOf="@id/quiz_title"
+        app:layout_constraintBottom_toTopOf="@id/option54"
+        app:layout_constraintEnd_toStartOf="@id/option53"
+        app:layout_constraintStart_toEndOf="@id/option51"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/option53"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/button_square_cornercercle"
+        app:layout_constraintWidth_default= "percent"
+        app:layout_constraintWidth_percent= ".25"
+        app:layout_constraintHeight_default= "percent"
+        app:layout_constraintHeight_percent= ".25"
+        app:layout_constraintTop_toBottomOf="@id/quiz_title"
+        app:layout_constraintBottom_toTopOf="@id/option54"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/option52"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/option54"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/button_square_cornercercle"
+        app:layout_constraintWidth_default= "percent"
+        app:layout_constraintWidth_percent= ".25"
+        app:layout_constraintHeight_default= "percent"
+        app:layout_constraintHeight_percent= ".25"
+        app:layout_constraintTop_toBottomOf="@id/option51"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/option55"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/option55"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/button_square_cornercercle"
+        app:layout_constraintWidth_default= "percent"
+        app:layout_constraintWidth_percent= ".25"
+        app:layout_constraintHeight_default= "percent"
+        app:layout_constraintHeight_percent= ".25"
+        app:layout_constraintTop_toBottomOf="@id/option51"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/option54"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

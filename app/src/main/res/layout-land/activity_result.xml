@@ -15,9 +15,9 @@
         android:autoSizeTextType="uniform"
         android:textColor="@color/black"
         app:layout_constraintWidth_default= "percent"
-        app:layout_constraintWidth_percent= ".35"
+        app:layout_constraintWidth_percent= ".2"
         app:layout_constraintHeight_default= "percent"
-        app:layout_constraintHeight_percent= ".1"
+        app:layout_constraintHeight_percent= ".2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -30,13 +30,13 @@
         android:autoSizeTextType="uniform"
         android:textColor="@color/black"
         app:layout_constraintWidth_default= "percent"
-        app:layout_constraintWidth_percent= "1"
+        app:layout_constraintWidth_percent= ".35"
         app:layout_constraintHeight_default= "percent"
-        app:layout_constraintHeight_percent= ".1"
+        app:layout_constraintHeight_percent= ".2"
         app:layout_constraintTop_toBottomOf="@id/result_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/percentage"/>
+        app:layout_constraintEnd_toStartOf="@id/percentage"
+        app:layout_constraintBottom_toTopOf="@id/restart"/>
 
     <TextView
         android:id="@+id/percentage"
@@ -46,11 +46,11 @@
         android:autoSizeTextType="uniform"
         android:textColor="@color/black"
         app:layout_constraintWidth_default= "percent"
-        app:layout_constraintWidth_percent= "1"
+        app:layout_constraintWidth_percent= ".35"
         app:layout_constraintHeight_default= "percent"
-        app:layout_constraintHeight_percent= ".1"
-        app:layout_constraintTop_toBottomOf="@id/details"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHeight_percent= ".2"
+        app:layout_constraintTop_toBottomOf="@id/result_title"
+        app:layout_constraintStart_toEndOf="@id/details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/restart"/>
 
@@ -62,13 +62,13 @@
         android:autoSizeTextType="uniform"
         android:background="@drawable/button_square_cornercercle"
         app:layout_constraintWidth_default= "percent"
-        app:layout_constraintWidth_percent= ".95"
+        app:layout_constraintWidth_percent= ".35"
         app:layout_constraintHeight_default= "percent"
-        app:layout_constraintHeight_percent= ".1"
-        app:layout_constraintTop_toBottomOf="@id/percentage"
-        app:layout_constraintBottom_toTopOf="@id/next_top"
+        app:layout_constraintHeight_percent= ".15"
+        app:layout_constraintTop_toBottomOf="@id/details"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/next_top" />
 
     <Button
         android:id="@+id/next_top"
@@ -78,12 +78,12 @@
         android:autoSizeTextType="uniform"
         android:background="@drawable/button_square_cornercercle"
         app:layout_constraintWidth_default= "percent"
-        app:layout_constraintWidth_percent= ".95"
+        app:layout_constraintWidth_percent= ".35"
         app:layout_constraintHeight_default= "percent"
-        app:layout_constraintHeight_percent= ".1"
-        app:layout_constraintTop_toBottomOf="@id/restart"
+        app:layout_constraintHeight_percent= ".15"
+        app:layout_constraintTop_toBottomOf="@id/details"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/restart"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

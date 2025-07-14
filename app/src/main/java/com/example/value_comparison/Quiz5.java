@@ -31,19 +31,19 @@ public class Quiz5 extends AppCompatActivity {
         // before txt size = 60
         TextView option1 = (TextView) findViewById(R.id.option51);
         option1.setText(strNumber[0]);
-        option1.setTextSize(120);
+        //option1.setTextSize(120);
         TextView option2 = (TextView) findViewById(R.id.option52);
         option2.setText(strNumber[1]);
-        option2.setTextSize(120);
+        //option2.setTextSize(120);
         TextView option3 = (TextView) findViewById(R.id.option53);
         option3.setText(strNumber[2]);
-        option3.setTextSize(120);
+        //option3.setTextSize(120);
         TextView option4 = (TextView) findViewById(R.id.option54);
         option4.setText(strNumber[3]);
-        option4.setTextSize(120);
+        //option4.setTextSize(120);
         TextView option5 = (TextView) findViewById(R.id.option55);
         option5.setText(strNumber[4]);
-        option5.setTextSize(120);
+        //option5.setTextSize(120);
 
         // 選択されたボタンを感知する
         View.OnClickListener next = new View.OnClickListener() {
